@@ -19,7 +19,7 @@ jobs:
         uses: trufflesecurity/trufflehog@v3.90.13
         continue-on-error: true 
         with:
-          scan: git
+          base: git
           path: ./
           extra_args: --debug
       - name: Check TruffleHog Results
