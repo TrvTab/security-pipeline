@@ -20,11 +20,12 @@ jobs:
       - name: TruffleHog OSS (Secret Scanning)
         id: trufflehog
         uses: trufflesecurity/trufflehog@main
-        continue-on-error: true 
+        continue-on-error: false 
         with:
           base: ${{ github.event.before }}
           head: ${{ github.sha }}
           path: ./
-      - name: Check TruffleHog Results
-        if: steps.trufflehog.outcome == 'failure'
-        run: exit 1
+          extra-args: "--debug"
+      # - name: Check TruffleHog Results
+      #   if: steps.trufflehog.outcome == 'failure'
+      #   run: exit 1
