@@ -22,7 +22,8 @@ jobs:
     steps:
       # Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it
       - uses: actions/checkout@v4
-        fetch-depth: 2 # only need the last 2 commits (including current commit) to scan diffs
+        with:
+          fetch-depth: 2 # only need the last 2 commits (including current commit) to scan diffs
 
       - name: Starting Pipeline Message
         run: echo Starting pipeline...
