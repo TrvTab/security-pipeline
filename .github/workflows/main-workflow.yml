@@ -13,14 +13,13 @@ jobs:
     steps:
       - uses: actions/checkout@v4
         with:
-          fetch-depth: 2 # only need the last 2 commits (including current commit) to scan diffs
+          fetch-depth: 0 # only need the last 2 commits (including current commit) to scan diffs
       
       - name: TruffleHog OSS (Secret Scanning)
         uses: trufflesecurity/trufflehog@v3.90.13
-        continue-on-error: false 
+        continue-on-error: true 
         with:
-          base: ${{ github.event.before }}
-          head: ${{ github.sha }}
+          scan: git
           path: ./
           extra_args: --debug
       - name: Check TruffleHog Results
