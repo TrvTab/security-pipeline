@@ -25,7 +25,7 @@ jobs:
           base: ${{ github.event.before }}
           head: ${{ github.sha }}
           path: ./
-          extra-args: "--debug"
+          extra_args: "--debug"
       # - name: Check TruffleHog Results
       #   if: steps.trufflehog.outcome == 'failure'
       #   run: exit 1
