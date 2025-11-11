@@ -16,6 +16,7 @@ jobs:
           fetch-depth: 0 # only need the last 2 commits (including current commit) to scan diffs
       
       - name: TruffleHog OSS (Secret Scanning)
+        id: trufflehog
         uses: trufflesecurity/trufflehog@v3.90.13
         continue-on-error: true 
         with:
