@@ -43,3 +43,4 @@ jobs:
           targets: './src'
           severity: 'all'
           confidence: 'all'
+        continue-on-error: false
