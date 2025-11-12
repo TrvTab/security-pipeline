@@ -1,2 +1,2 @@
 # version 2.0.0 pipeline checks for known vulnerabilities in Flask package
-Flask==2.0.0
+Flask==3.0.0
