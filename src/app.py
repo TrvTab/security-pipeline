@@ -3,6 +3,10 @@ import sqlite3
 
 app = Flask(__name__)
 
+@app.route('/')
+def index():
+    return "Welcome to the vulnerable Flask app!"
+
 # SQL Injection
 @app.route('/user')
 def get_user():

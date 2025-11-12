@@ -26,6 +26,13 @@ jobs:
           head: ${{ github.sha }}
           path: ./
           extra_args: "--debug"
+  docker-build:
+    name: Build Docker Image
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Build image
+        run: docker build -t my-app:latest ./src
   sast-bandit:
     name: Bandit Analysis
     runs-on: ubuntu-latest
