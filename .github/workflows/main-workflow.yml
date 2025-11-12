@@ -7,7 +7,7 @@ on:
   workflow_dispatch:
 
 jobs:
-   trufflehog-scan:
+  trufflehog-scan:
     runs-on: ubuntu-latest
     defaults:
       run:
@@ -15,7 +15,7 @@ jobs:
     steps:
       - uses: actions/checkout@v4
         with:
-          fetch-depth: 0 # only need the last 2 commits (including current commit) to scan diffs
+          fetch-depth: 2 # only need the last 2 commits (including current commit) to scan diffs
       
       - name: TruffleHog OSS (Secret Scanning)
         id: trufflehog
@@ -26,6 +26,21 @@ jobs:
           head: ${{ github.sha }}
           path: ./
           extra_args: "--debug"
-      # - name: Check TruffleHog Results
-      #   if: steps.trufflehog.outcome == 'failure'
-      #   run: exit 1
+  sast-bandit:
+    name: Bandit Analysis
+    runs-on: ubuntu-latest
+    permissions:
+      security-events: write
+      actions: read
+      contents: read
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+      
+      - name: Perform Bandit Analysis
+        uses: PyCQA/bandit-action@v1
+        with:
+          targets: './src'
+          severity: 'medium'
+          confidence: 'medium'
+          python-version: '3.12'
