@@ -105,6 +105,8 @@ jobs:
   zap_scan:
     runs-on: ubuntu-latest
     name: Scan the Web Application with OWASP ZAP
+    permissions:
+      issues: write
     needs: docker-build
     steps:
       - uses: actions/checkout@v4
