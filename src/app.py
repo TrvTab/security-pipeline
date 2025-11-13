@@ -16,12 +16,12 @@ def get_user():
     cursor = conn.execute(query)
     return str(cursor.fetchone())
 
-#  XSS
-@app.route('/hello')
-def hello():
-    me = request.args.get('me')
-    # Vulnerable: No output escaping
-    return f"<h1>Hello {me}</h1>"
+# #  XSS
+# @app.route('/hello')
+# def hello():
+#     me = request.args.get('me')
+#     # Vulnerable: No output escaping
+#     return f"<h1>Hello {me}</h1>"
 
 if __name__ == '__main__':
     app.run(host='0.0.0.0', port=5000) # nosec
